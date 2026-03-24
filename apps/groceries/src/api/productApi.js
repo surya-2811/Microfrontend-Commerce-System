@@ -1,9 +1,9 @@
 import productsData from "../data/products";
-import { getToken } from "../auth/auth";
+
 
 export const fetchProductsApi = () => {
-    const token = getToken();
-    return new Promise((resolve) => {
+    const token = localStorage.getItem("token");
+    return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (token) {
                 resolve(productsData);
