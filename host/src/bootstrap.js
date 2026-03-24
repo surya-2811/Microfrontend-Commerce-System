@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./Header";
+import Login from "./pages/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const ElectronicsApp = React.lazy(() => import("electronics/App"));
 const GroceriesApp = React.lazy(() => import("groceries/App"));
@@ -40,9 +42,10 @@ const App = () => {
 
             <React.Suspense fallback="Loading...">
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/electronics" element={<ElectronicsApp />} />
-                    <Route path="/groceries" element={<GroceriesApp />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+                    <Route path="/electronics" element={<ProtectedRoute><ElectronicsApp /></ProtectedRoute>} />
+                    <Route path="/groceries" element={<ProtectedRoute><GroceriesApp /></ProtectedRoute>} />
                 </Routes>
             </React.Suspense>
         </BrowserRouter>

@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { logout } from "./auth/auth";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ cart }) => {
     const location = useLocation();
@@ -11,12 +13,19 @@ const Header = ({ cart }) => {
         fontWeight: active ? "bold" : "normal",
         color: active ? "blue" : "black",
     });
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+        navigate("/login");
+    };
 
     return (
         <div style={{ marginBottom: "20px" }}>
             <span style={{ marginLeft: "20px" }}>
                 🛒 Cart: {cart.length}
             </span>
+            <button onClick={handleLogout}>Logout</button>
             <Link to="/" style={linkStyle(isActive("/"))}>
                 Home
             </Link>
