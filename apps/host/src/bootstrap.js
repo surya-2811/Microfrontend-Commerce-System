@@ -38,7 +38,7 @@ const App = () => {
         <BrowserRouter>
             <h1>Host App</h1>
 
-            <Header cart={cart} />
+            <Header cart={cart} setCart={setCart} />
 
             <React.Suspense fallback="Loading...">
                 <Routes>

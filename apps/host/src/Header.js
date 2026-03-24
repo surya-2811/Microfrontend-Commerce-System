@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { logout } from "./auth/auth";
 import { useNavigate } from "react-router-dom";
 
-const Header = ({ cart }) => {
+const Header = ({ cart, setCart }) => {
     const location = useLocation();
 
     const isActive = (path) => location.pathname === path;
@@ -16,6 +16,8 @@ const Header = ({ cart }) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
+        if (setCart) setCart([]);
+        localStorage.clear();
         logout();
         navigate("/login");
     };
