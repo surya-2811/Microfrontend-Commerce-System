@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsRequest } from "../redux/actions/productActions";
 import ProductCard from "../components/ProductCard/ProductCard";
 
-const ElectronicsPage = () => {
+const GroceriesPage = () => {
     const dispatch = useDispatch();
     const { products, loading, error } = useSelector((state) => state.product);
 
@@ -14,7 +14,7 @@ const ElectronicsPage = () => {
     return (
         <div style={{ padding: "24px", fontFamily: "'Segoe UI', sans-serif" }}>
             <h2 style={{ marginBottom: "16px", color: "#1a1a2e" }}>
-                Electronics
+                🛒 Groceries
             </h2>
 
             {loading && <p>Loading products...</p>}
@@ -37,4 +37,4 @@ const ElectronicsPage = () => {
     );
 };
 
-export default ElectronicsPage;
+export default GroceriesPage;
