@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ cart }) => {
     const location = useLocation();
 
     const isActive = (path) => location.pathname === path;
@@ -14,6 +14,9 @@ const Header = () => {
 
     return (
         <div style={{ marginBottom: "20px" }}>
+            <span style={{ marginLeft: "20px" }}>
+                🛒 Cart: {cart.length}
+            </span>
             <Link to="/" style={linkStyle(isActive("/"))}>
                 Home
             </Link>
