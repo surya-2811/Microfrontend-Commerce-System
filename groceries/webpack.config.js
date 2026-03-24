@@ -5,7 +5,7 @@ module.exports = {
     mode: "development",
     entry: "./src/index.js",
     devServer: {
-        port: 3000,
+        port: 3002,
     },
     output: {
         publicPath: "auto",
@@ -24,10 +24,10 @@ module.exports = {
     },
     plugins: [
         new ModuleFederationPlugin({
-            name: "host",
-            remotes: {
-                electronics: "electronics@http://localhost:3001/remoteEntry.js",
-                groceries: "groceries@http://localhost:3002/remoteEntry.js",
+            name: "groceries",
+            filename: "remoteEntry.js",
+            exposes: {
+                "./App": "./src/App",
             },
             shared: {
                 react: { singleton: true },
