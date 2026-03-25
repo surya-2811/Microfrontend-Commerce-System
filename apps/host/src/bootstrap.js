@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./Header";
+import { Header } from "@mfe/ui";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { logout } from "./auth/auth";
 
 const ElectronicsApp = React.lazy(() => import("electronics/App"));
 const GroceriesApp = React.lazy(() => import("groceries/App"));
@@ -38,7 +39,7 @@ const App = () => {
         <BrowserRouter>
             <h1>Host App</h1>
 
-            <Header cart={cart} setCart={setCart} />
+            <Header cart={cart} setCart={setCart} logout={logout} />
 
             <React.Suspense fallback="Loading...">
                 <Routes>

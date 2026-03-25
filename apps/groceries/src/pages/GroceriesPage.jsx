@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsRequest } from "../redux/actions/productActions";
-import ProductCard from "../components/ProductCard/ProductCard";
+import { ProductCard } from "@mfe/ui";
 
 const GroceriesPage = () => {
     const dispatch = useDispatch();

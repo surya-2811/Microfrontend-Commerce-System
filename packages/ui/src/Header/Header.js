@@ -1,9 +1,8 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { logout } from "./auth/auth";
 import { useNavigate } from "react-router-dom";
 
-const Header = ({ cart, setCart }) => {
+const Header = ({ cart, setCart, logout }) => {
     const location = useLocation();
 
     const isActive = (path) => location.pathname === path;

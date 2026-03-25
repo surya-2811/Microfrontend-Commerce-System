@@ -1,6 +1,12 @@
 import React from "react";
-import { addToCart } from "../../utils/cart";
 import styles from "./ProductCard.module.css";
+export const addToCart = (product) => {
+    window.dispatchEvent(
+        new CustomEvent("add-to-cart", {
+            detail: { id: Date.now(), name: product.name, price: product.price },
+        })
+    );
+};
 
 const ProductCard = ({ product }) => {
     return (
