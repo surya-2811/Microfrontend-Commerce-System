@@ -18,8 +18,28 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/,
-                loader: "babel-loader",
                 exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ["@babel/preset-env", "@babel/preset-react"],
+                    },
+                },
+            },
+            {
+                test: /\.module\.css$/,
+                use: [
+                    "style-loader",
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: {
+                                localIdentName: "[name]__[local]--[hash:base64:5]",
+                                namedExport: false,
+                            },
+                        },
+                    },
+                ],
             },
         ],
     },
