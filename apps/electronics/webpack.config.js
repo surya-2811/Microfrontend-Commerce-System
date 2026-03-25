@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
+const path = require("path");
 
 module.exports = {
     mode: "development",
@@ -17,7 +18,10 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/,
-                exclude: /node_modules/,
+                include: [
+                    path.resolve(__dirname, "src"),
+                    path.resolve(__dirname, "../../packages/ui/src"),
+                ],
                 use: {
                     loader: "babel-loader",
                     options: {
