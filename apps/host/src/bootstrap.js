@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "@mfe/ui/global.css";
 import { Header } from "@mfe/ui";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";

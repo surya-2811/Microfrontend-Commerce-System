@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsRequest } from "../redux/actions/productActions";
 import { ProductCard } from "@mfe/ui";
+import styles from "./ElectronicsPage.module.css";
 
 const ElectronicsPage = () => {
     const dispatch = useDispatch();
@@ -12,22 +13,16 @@ const ElectronicsPage = () => {
     }, [dispatch]);
 
     return (
-        <div style={{ padding: "24px", fontFamily: "'Segoe UI', sans-serif" }}>
-            <h2 style={{ marginBottom: "16px", color: "#1a1a2e" }}>
+        <div className={styles.container}>
+            <h2 className={styles.title}>
                 Electronics
             </h2>
 
-            {loading && <p>Loading products...</p>}
-            {error && <p style={{ color: "red" }}>Error: {error}</p>}
+            {loading && <p className={styles.loading}>Loading products...</p>}
+            {error && <p className={styles.error}>Error: {error}</p>}
 
             {!loading && !error && (
-                <div
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-                        gap: "16px",
-                    }}
-                >
+                <div className={styles.grid}>
                     {products.map((product) => (
                         <ProductCard key={product.id} product={product} />
                     ))}
