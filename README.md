@@ -1,5 +1,5 @@
 # Microfrontend-Commerce-System
-A scalable microfrontend-based e-commerce platform built with React and Webpack Module Federation, featuring independent deployments, shared cart, authentication, and AWS-based CI/CD pipeline.
+A scalable microfrontend-based e-commerce platform built with React and Webpack Module Federation, featuring independent deployments, shared cart, and centralized authentication.
 
 # 🛍️ Modular Commerce Platform (Microfrontend Architecture)
 
@@ -8,14 +8,16 @@ A scalable microfrontend-based e-commerce platform built with React and Webpack 
 ![Module Federation](https://img.shields.io/badge/Microfrontend-Module%20Federation-purple)
 ![Redux](https://img.shields.io/badge/State-Redux%20Saga-green)
 ![Monorepo](https://img.shields.io/badge/Monorepo-Turborepo-orange)
-![AWS](https://img.shields.io/badge/Deployment-AWS-yellow?logo=amazonaws)
+![Vercel](https://img.shields.io/badge/Deployment-Vercel-black?logo=vercel)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 ---
 
 ## 🚀 Overview
 
-A **production-grade microfrontend e-commerce platform** built using **React, Webpack 5 Module Federation, and AWS**.
+A **production-grade microfrontend e-commerce platform** built using **React, Webpack 5 Module Federation**.
+
+**Live Demo:** [https://microfrontend-commerce-system-eight.vercel.app/login](https://microfrontend-commerce-system-eight.vercel.app/login)
 
 This project demonstrates how to build a **scalable frontend architecture** where multiple independent applications (microfrontends) work together as a single system while maintaining **independent development and deployment pipelines**.
 
@@ -27,8 +29,8 @@ This project demonstrates how to build a **scalable frontend architecture** wher
 - Independent deployment of each application
 - Shared cart across multiple microfrontends
 - Centralized authentication system
-- Monorepo setup using Turborepo/Nx
-- AWS-based CI/CD pipeline
+- Monorepo setup using Turborepo
+- Deployed on Vercel for demo purposes (AWS CI/CD proposed for scale)
 - Performance optimized and production-ready setup
 
 ---
@@ -47,12 +49,10 @@ This project demonstrates how to build a **scalable frontend architecture** wher
 
 - 🥦 Groceries
 - 📱 Electronics
-- 🧸 Toys
 
 Each microfrontend:
 - Built independently
 - Uses Redux + Saga
-- Has its own deployment pipeline
 - Exposes routes/components via Module Federation
 
 ---
@@ -61,13 +61,40 @@ Each microfrontend:
 
 - UI Component Library (Button, Header, Card)
 - Utility functions
-- Analytics module
 
 ---
 
 ## 🧭 Architecture Diagram
 
-![Architecture](./docs/architecture.png)
+```mermaid
+graph TD
+    subgraph Host Application
+        Host[🛒 Host Shell]
+        Auth[🔐 Authentication]
+        CartState[🛒 Shared Cart State]
+    end
+
+    subgraph Microfrontends
+        Elec[📱 Electronics Remote]
+        Groc[🥦 Groceries Remote]
+    end
+
+    subgraph Shared Packages
+        UI[🧩 @mfe/ui Components]
+        Utils[🛠️ @mfe/utils]
+    end
+
+    Host -- Dynamically loads --> Elec
+    Host -- Dynamically loads --> Groc
+    
+    Elec -. Uses .-> UI
+    Groc -. Uses .-> UI
+    Host -. Uses .-> UI
+    
+    Elec -. Uses .-> Utils
+    Groc -. Uses .-> Utils
+    Host -. Uses .-> Utils
+```
 
 ---
 
@@ -78,7 +105,8 @@ Each microfrontend:
 - Redux + Redux Saga
 - Turborepo / Nx (Monorepo)
 - Mock Service Worker (MSW)
-- AWS (S3, CloudFront, CodePipeline, CodeBuild)
+- Vercel (Demo Deployment)
+- AWS (S3, CloudFront, CodePipeline, CodeBuild) - *Proposed Architecture*
 
 ---
 
@@ -117,10 +145,6 @@ Each microfrontend:
 ### ⚡ Performance Optimization
 - Code splitting and lazy loading
 - Shared dependency optimization
-- CloudFront CDN caching
-- Bundle size optimization
-- Memoization (React.memo, useMemo)
-- Prefetching remote applications
 
 ---
 
@@ -131,34 +155,9 @@ Each microfrontend:
 
 ---
 
-### 📊 Analytics Tracking
-- Track page views and user interactions
-- Centralized analytics module
-- Easily extendable to external tools
-
----
-
-### 🌐 Internationalization (i18n)
-- Multi-language support (extendable)
-
----
-
 ## 📸 Screenshots
 
-### 🏠 Host Application
-![Host](./docs/screenshots/host.png)
-
-### 🛒 Electronics Microfrontend
-![Electronics](./docs/screenshots/electronics.png)
-
-### 🔁 Shared Cart Across Apps
-![Cart](./docs/screenshots/cart.png)
-
-### 🔐 Authentication
-![Login](./docs/screenshots/login.png)
-
-### 🚨 Error Handling
-![Error](./docs/screenshots/error.png)
+Please refer to the repository's `docs/screenshots` folder or view the live demo link to see the updated Host Application, Electronics Microfrontend, and Groceries Microfrontend. You can seamlessly navigate through the shared header layout across these independently deployed microfrontends.
 
 ---
 
