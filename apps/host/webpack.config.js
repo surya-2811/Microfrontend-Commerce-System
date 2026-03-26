@@ -56,8 +56,8 @@ module.exports = {
         new ModuleFederationPlugin({
             name: "host",
             remotes: {
-                electronics: "electronics@http://localhost:3001/remoteEntry.js",
-                groceries: "groceries@http://localhost:3002/remoteEntry.js",
+                electronics: "electronics@https://mfe-electronics.vercel.app/remoteEntry.js",
+                groceries: "groceries@https://microfrontend-commerce-system.vercel.app/remoteEntry.js",
             },
             shared: {
                 react: { singleton: true },
