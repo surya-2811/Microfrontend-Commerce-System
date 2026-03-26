@@ -35,6 +35,7 @@ coverage/
 # Cache
 .cache/
 .parcel-cache/
+.turbo/
 
 # Webpack
 *.log
